@@ -1,0 +1,200 @@
+v0.147
++RandomGeneration of ZoneMarkers implimented, based upon input of FlagPoleBorders (NW,SW,SE,NE) Order in editor vital
+
+//DISGARD//
++- Zones Implimented!(YAYAYAYAYAYAY) borders still to be determined, should be rather simple. OBS! Use DefineZone function, needs occupying anyway.
+//DISGARD//
+
++ Starter Markers shifted to independant, as they should
++ Rough ObjectiveSpawner template added, modular enough to be used for any house defined through presets.(UNFINISHED)
++ CompSQM included, in which triggers and objective templates are present, for use witch Extractor.
++- Working Trigger spawn added, issue revolving around use of execVM and parameters needs fixing(fn_DefineZones), bool works, not function(and/or call)///FIXED,DETAILS BELOW:///
+//
+Trigger Statements update variables used when launched, workaround uses needed variables stored within trigget text
+through formating into string simpleArray, and parsing in statement when needed for ZoneGuardian call. DONT EVER use local variables, or 
+global variables with dynamic values changed meant to be changed in each loop, and then store that certain value.
+//
++ Nations defined for east, west and resistance. Marker color now retrived externally.
++ TriggerText now updates according to new force that occupies zone(Truly fixed, used to be restriced to sectors).
++ PostInit added for simplyfing of browsing and better order.
++ Preliminary timer for Zone Capture added, Lots of notes to review surrounding gamemode in respective files.
++ ZoneTimer IDs for each zone included.
++ Lvl 0/Single Zones Added(Will probably function as native bases, in terms of difficulty. might add manually spawning objectives, and/or base configs.)
++ Timer and capture dependant on force of nation and duration added(Finalized, duration to be tweaked and objective requirement added.)
++ Timers deleted upon compleation 
++ Changed MissionName to OpUs(We're official, woho!) and a few tweaks to mission desc, revive etc.
++ Added framework for randomization of objective, commented out atm, to be implimented when Objectives are
+Playable.
++ Objective unit groups now dependent on occup side, random selection.
++ Extractor pretty much complete, script sections to be added last, for added user friendliness, added with mission
++ SampleTXT with needed params, might need storing through missionConfig.
++ First Objective added via extractor framework, volume should be much easier to produce from now on
++ StratBuild for militairy office added, needs scripting for intel collection
++ Buildings now heal post Objective(More to come post config implimentation)
++ Zones can now be captured regardless of units already present.
++ Rough Intel framework added, All objective Population code turned into scripts, easy and modular application and tweaking across all objectives now.
+
+all prior to  v0.078.
+
+
+v0.079:
++ RemoteExec added for Zone Markers
+
+v0.082
++ Music when entering zone added
++ Respawn Menu working, test script for MobileRespawn added on ifrit
+
+v0.085
++ Music working for players in Vehicles
++ Capture working for players in Vehicles
+
+v0.092
++ Territory added(Fucccin AYEEEEEE!)
+Building of major constructions and facilities can only occur wihtin these. Including FOBs. if 1 is lost,
+then remaining bases and or outposts will need to be used, cannot be rebuilt, but repaired. Camps can be
+Constructed though, requires food for restoration of spawning power??
+
+v0.095
++ FOB props now spawn properly, through function, not implimented ingame yet.
+Units still not spawning though.
+
+v0.097
++ Added AI management scripts(AiLoadout, BaseLoadout) dependant on predefined loadouts for each side
+need an extractor like script for user input\streamlining though.
++Visible resources script added, very resource heavy however, so have left it optional atm. might need 
+script that triggers along with value change, instead of constant checkup of value.
+
+v0.098
++ Rough Extractor for Factories added
++ GUI for Engineering added, Vehicles factories Offsets added(VR enteties indicating Factory Spawns WIP)
++ AliveHandler fixed for props and invincible AI in bases.
++ sleep switched to uiSleep in zoneTimer and Guardian.(Where it is used for timekeeping and not rest in while
+loops for system)
+NOTE: Desc is still messed up, dubbleprints on some rows for some reason, Ex:
+
+"...Arma 3 is a very good gam
+game, it has an extre
+extremly versitile..."
+
+v0.100
++Camera and Build limit added(550 for cam, 500 for object. to vary depending on base level doe.)
++Slider for building direction added, crude spawn and cost implimented.
+
+v0.101
++ Factory menu added, vehicles can now be spawned from them
+(rought cfg rip atm, to be replaced with arrays including vehicle price, Nations who can buy them,
+stockpile array etc.)
+//NOTE ABOUT STOCKPILE//
+Will most likely use a dedicated tab for stockpiled vehicles/weapons in engineering, and have them
+delivered straight to garage.
+
+v0.102
++AISkill now working properly
++Nation GDP and Player funds now displayed in appropriate menus
+(GDP set to 0 for now, will need to get from extDB in future)
+
+v0.103
++VehicleParams structure added, each LandTier now filled with testing vehicle and price.
+
+v0.105
++ Vehicle prices now working, GDP and PlayerFunds shown in structured text for increased awesomness
++ Some Zone objective loadouts now implimented
++ Flags are now shown in compatible menus
+
+v0.107
++ Removed Objective Dependant timers for zone capture
++ Adjusted CSAT special loadouts, should not complain about ammo anymore.
++ Zone Activation is now limited by number of active AOs, both attacking and defending.
+can join infinetly many battles, but can start limited amount. 
+
+v0.112
++ Bugfix to zone activation limitation
++ Rudemantary patrol/Zone garrison spawns implimented(Not fixed for high level zones yet)
+
+v0.115
++ High Level zones patrol distribution added(ie they dont patrol entire zone, they all have sections to check)
+
+v0.117
++ Rudemantary building tiers implimented, to add icons and functionality on each for increased awesomness
++ AOs and their power now registeres for nations, to hinder futher zones from being attacked beyond server set cap.
+(To be switched from trigger ID to zones variable ID, for ease of check when 
+determining if building can be repaired, or FOB/Base Constructed.)
+
+v0.121
+
++ Territory stored as zones index instead of full coordinates in nation variables
++ BuildPop added(populates buildings in low level zones)
++ NationAOupdt added(Streamlined funktion for removing/adding territory after capture of zone)
+
+v0.123
++ BuildingPop implimented(Headless clients most likely necessity, 3-6 fps in large groups, 30+ in small ones.)
++ Duplicates of zones fixed(server_fnc_init.sqf)
++ Vehicle Squad vehicles now based on zone level
+
+0.127
++ Basic Armory UI added, no functionality or description implimented yet
++ Weapon params structure refined
+
+v0.129
++ Fixed Weapons description/Image aspect ratio(Armory)
++ Fixed Flag aspect ratio(Armory, to be done for engineer aswell)
+
+v0.131
++ Functionalty added to armory menu(Purchase can be made, stored in arsenal variable)
++ Rough Outline for Arsenal management added, consideration for attachments and magazines already in weapons needed,
+along with deletion or payment option for too many magazines/items added through arsenal(explosives,magazines)
+Will most likely require locking of inventory for shop duration to stop players from backpack duping, or
+removal of items until payment, instead of wait for payment.
+
+v0.135
++ Arsenal added, Items and Weapons can be payed for or deleted if not already in arsenal variable
++ Restructuring of WeaponParams(Main formatting of outPut generalised outside of nation statements)
++ ConfigRip added
+//Uses function for reasonable pricing/Adding of magazines for 
+All weapons defined in WeaponParams, if mags are not already present in Common tier.
+
+v0.137
++ Began major restructuring of Arsenal script, in order to take attachments and their placements into account,
+along with where items that need paying for are to be redeposited, in order to prevent items disappearing due to
+lack of space.
++Added forum script by larrow along with a few tweaks for adding/removing attachments for weapons in inventories, will
+most likely be used for Crates/Vehicles aswell.
+//NOTE REGARDING USE FOR VEHICLES// Will most likely require custom script, or addition of parameters,
+that spawns agents on server boot, that are responsible for adding attachments to vehicles. might have 1 agent/item/vehicle.
+will lead to major start lag, but will dissipate quickly and guarantee that nothing of value to players is lost.
+
+v0.138
++ Attachments for weapons and their placements in containers(vest,uniform,backpack) now taken into account
+in arsenal script, rought POC attachment delete script in place, to expand functionality for repurchase
+
+v0.141
++ UpdateInCargo can now handle infinite amount of weapons inside of cargo, and still keep items, now up to other scripts to adjust
+item/Weapon Count.
+
+v0.142
++ Revamp of Arsenal function, using getunitloadout instead of proprietary hand crafted version of the same ting
+(Took 1 week to make in own function, finished in 6 hours using other command with more items tracked)
+
+v0.143
++ Funds now gained from kills(Only AI atm, To be added to players)
+
+v0.144
++ Work on DB begun(Checking for existing columns and return of data complete via assistance through f(OPTiX) DB scripts used in RushRedux)
++ Set Functions TBI, framework for talking with DB pretty much done though
+
+v0.145
++ Playerinfo now stored and retrived upon connection
++ Setting of data has been completed for playerinfo, although string preparation is to be implimented.
+
+v0.146
++ DB Data exchange should now be fully working, with dynamically scaling tables and columns.
+(Note, Main issue was lack of preparation of strings, check for that if issues pop up later.)
+
+v0.147
++ DB Issue with setting of data inside newly created tables/columns/rows now fixed
+(Issue for playerinfo was inssuficent recognition/managment of null strings, now managed in DBS_fnc_EntryExists, which should
+cure all related issues with worlds aswell.)
++ Funds, Loadout,Funds and Arsenal now fully persistant, updated on call of functions.
+(Might use EHs for automation, but nice to have control over data flow if need for regulation arises)
++ Added wrapper functions for commmon DB operations (client_fnc_SaveFunds/SaveArsenal/SaveFunds etc)
+

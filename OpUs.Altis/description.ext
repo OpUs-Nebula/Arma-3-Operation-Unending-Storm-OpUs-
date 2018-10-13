@@ -1,0 +1,77 @@
+
+enableDebugConsole = 1;
+disabledAI = 1;
+
+class cfgFunctions 
+{
+  #include "cfg\functions.h"
+  #include "bin\server\PostInit\Missions\RootFncs.hpp"
+};
+
+respawnTemplates[] = {"MenuPosition"};
+
+#include "cfg\defines.hpp"
+#include "cfg\UITempDefines.hpp"
+#include "cfg\dialogs.hpp"
+#include "cfg\Objectives\BuildingParams.h"
+#include "bin\server\PostInit\Missions\RootInc.hpp"
+
+class Params
+{
+	class AISkill
+	{
+		title = "AI Skill"; 
+		values[] = {5,4,3,2,0}; 
+		texts[] = {"Realistic(1.0)","OpUs Standard(0.8)","Challenge(0.6)","Easy(0.4)","Dev(None)"}; 
+		default = 4; 
+	};
+	class MHQtickets
+	{
+	    title = "MHQ Tickets"; 
+		values[] = {0,2,10,30}; 
+		texts[] = {"Realistic(Only HQ/FOB)","OpUs Standard(2)","Easy(10)","Beginner(30)"}; 
+		default = 2; // Default value; must be listed in 'values' array, otherwise 0 is used
+	};
+	class Occupation
+	{
+	    title = "Domination Time"; 
+		values[] = {10800,2700,1200,600,0}; 
+		texts[] = {"Realistic(3h/lvl)","OpUs Standard(45min/lvl)","Regular(20min\lvl)","fast(10min\lvl)","Dev(0min\lvl)"}; 
+		default = 2700; 
+	};
+	class VisResc
+	{
+	    title = "Visable Resources(OBS! Heavy performance impact!)"; 
+		values[] = {1,0}; 
+		texts[] = {"Enabled","Disbled"}; 
+		default = 0; 
+	};
+	class HostGDP
+	{
+	    title = "Host World GDP"; 
+		values[] = {18,190,570,4000,1857}; 
+		texts[] = {"Expeditionary(18m)","Established(190m)","Stronghold(570m)","Dominant(4bn)","Superpower Mainland(18.57tn)"}; 
+		default = 190; 
+	};
+	class InvadGDP
+	{
+	    title = "Invader World GDP"; 
+		values[] = {18,190,570,4000,90000}; 
+		texts[] = {"Expeditionary(18m)","Established(190m)","Stronghold(570m)","Dominant(4bn)","Superpower Mainland(90bn)"}; 
+		default = 18; 
+	};
+	class MaxZone
+	{
+	    title = "Max AO Power/Nation"; 
+		values[] = {4,8,16,50,999999}; 
+		texts[] = {"4/One Capital(Best performance)","8/Two Capitals","16/Four Capitals","50/Twelve Capitals","Infinite/Whole Island at once"}; 
+		default = 4; 
+	};
+	class NebsMagRip
+	{
+	    title = "Nebulas ConfigMagRip(Automatic addition/Price setting for all mags for Arsenal Weapons, If not already defined by hand)"; 
+		values[] = {0,1}; 
+		texts[] = {"Disable","Activate"}; 
+		default = 1; 
+	};
+};

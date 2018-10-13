@@ -1,0 +1,20 @@
+0.101ms
+["Da"] call 
+{
+    _Mst = ["WOT","DA","FUK"];
+	_Arr = []; 
+	{
+	    if (_x in _This) then {_Arr append [_x]}
+	} forEach _Mst; 
+	_Arr
+}
+
+//Fastest
+
+0.07ms
+["Da"] call 
+{
+    _Mst = ["WOT","DA","FUK"];
+	_Arr = _Mst select {_x in _This};
+	_Arr
+}

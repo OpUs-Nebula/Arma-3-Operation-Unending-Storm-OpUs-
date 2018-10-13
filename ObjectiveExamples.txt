@@ -1,0 +1,51 @@
+HVT Elimination(Random):
+A Commander is found through intel on ground, or
+Intelligence generation by agency, Reduces Zone time required(Get variable Zone time - modifier)
+If Assasinated, if allowed to flee, Triggers stronger reinforcements, possibly arty on stronger zones.
+Possible adverse affects if controlled zone belongs to players(Enabled through upgrade making Occupying units stronger)
+
+Communications disruption(for Capture):
+A series of tasks, possibly, Relating to destroying radio towers, uploading malware through data terminals, etc.
+The higher the level, the more the Tasks.
+
+Sabotage (for Capture)
+Arming and blowing of Bomb at Critical location,
+Vehicle Depot/Ammo Dump, Intelligence Office, . Can be stolen by Player created nations/guerilla.
+Barracks(Possible Intel Loc)
+
+Strategic Buildings(for Capture):
+Fortified building with turrets, additional blockades, and Full to the brim with units, and sentries.
+Needs to be Destroyed, All units occupying it killed, or Captured. Can contain supplies for enemy forces to Use/Steal,
+or Defenders to Recover.(Might consist part of realtime stockpile?? TBD, might be a lil evil (: )
+
+After objectives are done, only domination is required for capture(In order to provide incentive
+for multiple nations to battle post objectives, but still want to complete them for exp and stockpile)
+
+//Higher level Optionals//
+SAM-Site(Bonus):
+
+Disabling of Anti-Air in Order to Secure Air-Superiority. Useful if Massive invasion is planned.
+ManPads can still be a threat However, and players can move in with mobile SAMs. Mobile SAMs spawned
+at 2, Static at 3 and up.
+
+JTAC-Elmination(Bonus):
+Cancels all AI Artillery support. Players can still coordinate some on their own Though, But are vurnerable to 
+Counter-Artillery when doing so.
+(qty might be level dependent though)
+
+ATC-Elimination(Bonus):
+Disables Air-Support from Spawning. Players can still provide.
+(qty might be level dependent though)
+
+
+Scripts can always be added to the Objective Pool(Possibly by Community? lol)
+Modularity should be emphasized.
+
+if high level eliminations are qty, then model might be:
+
+_Qty = ceil (_lvl / 4)
+
+remember, these guys are not going to be marked, and therefore will be enough trouble to find.
+
+
+

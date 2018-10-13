@@ -1,0 +1,115 @@
+_Levels = [];
+//MENTAL NOTES,ROADMAPS
+
+for "_l" from 0 to 100 do { _lvl = ceil (ln _l); _Levels append [[_lvl,_l]]; };
+hint str(_Levels);
+
+
+
+//Floor turned out better, otherwise lvl 1 towns were non existant. Instead of Ceil that is...
+_Levels = [];
+{
+    _Cnt = Count (_x Param[0]);
+	_Lvl = floor (ln _Cnt);
+	
+	_Levels append [[_lvl,_Cnt]];
+
+
+} forEach Zones; hint str _Levels;
+
+
+
+
+
+
+
+//ZoneIDs and trigger setup(OBSOLETE)
+_Secs  = param[0];
+_lvl   = param[1]; 
+_Occup = param[2];
+_id = str (random 999999);
+
+
+while {(_id in ZoneIDs)} do {_id = str (random 999999);};
+
+ZoneIDs append [_id];
+
+missionNamespace setVariable [_id, 'INACTIVE'];
+
+//function to check if playerNation is allied with Nation occupying probably needed.
+
+Bool = ((missionNamespace getVariable _id) == 'INACTIVE');
+{
+    _trg = createTrigger ["EmptyDetector",_x,true];
+    _trg setTriggerArea [200,200, 0, true];
+    _trg setTriggerActivation ["ANY", "PRESENT", true];
+    _trg setTriggerStatements ["this && Bool","[_Secs,_lvl,_Occup,_id,thisList] call server_fnc_ZoneGuardian","hint 'Why?..1+1+1'"]; 
+} forEach _Secs;
+
+
+
+//Storing of _Zone data in trigger text, formatting into viable code.
+{
+    _Store = format ['[%1,%2,%3,%4]',_Secs,_lvl,str _Occup,_id];
+    _trg = createTrigger ["EmptyDetector",_x,true];
+	_trg setTriggerText _Store;
+    _trg setTriggerArea [200,200, 0, true];
+    _trg setTriggerActivation ["ANY", "PRESENT", true];
+    _trg setTriggerStatements ["this && Bool",
+	                           "_Fin = parseSimpleArray (triggerText thisTrigger);
+                                _Fin append ThisList; _Fin call server_fnc_ZoneGuardian;							   
+							   ",
+							   "hint 'Why?..1+1+1'"];
+} forEach _Secs;
+
+/*----------------------------------------------------------------------------------
+OLD THOUGHTPATTERN: DIDNT TAKE INTO ACCOUNT DYNAMIC UNIT PRESENS
+
+_Secs  = param[0];
+_lvl   = param[1]; 
+_Occup = param[2];
+_id    = param[3];
+_Ind   = param[4];
+_Aggs  = param[5];
+
+
+/*------------------------------------------------------------------------
+Nation check needed in DefineZones triggers condigion, Marker color should be 
+gotten from array containing Nation Coulors. Majority/Objective Based Determinance of who 
+conqueres zone when multiple nations are present.
+------------------------------------------------------------------------*/
+
+{
+    _xCord = _x param[0];
+    _yCord = _x param[1];
+
+    _name = format ["Location: %1 %2",_xCord,_yCord];
+
+    _name setMarkerColor "colorBLUFOR";
+
+} forEach _Secs;
+
+//Advers = Count of units in zone, _Side = nr and id of sides, _Force = side + size of units of given side in zone.
+
+_Advers = [];
+_Sides  = [];
+_Force  = [];
+{
+    _Nat = _x getVariable "NATION"; 
+	_Advers append [_Nat];
+	
+	if ((!(_Nat in _Sides)) && (_Nat != _Occup)) then {
+	    _Sides append [_Nat];
+	};
+} forEach _Ents;
+{
+    _ChkSide = _x; _Nr = [];
+	{if ()};
+
+
+}; forEach _Sides;
+
+(Zones param[_Ind]) set [2,_Capper];
+
+Hint "Zone Captured!";
+----------------------------------------------------------------------------------/*

@@ -1,0 +1,87 @@
+/*%FSM<COMPILE "C:\Program Files (x86)\Steam\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, ZoneTriggs">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"Init",0,250,-111.090820,-180.295975,-21.090816,-130.295975,0.000000,"Init"};
+item1[] = {"true",8,218,54.925049,-99.263718,144.925049,-49.263718,0.000000,"true"};
+item2[] = {"hint",2,4346,205.054306,-278.686157,295.054260,-228.686249,0.000000,"hint"};
+item3[] = {"End",1,250,447.640839,-58.069763,537.640869,-8.069778,0.000000,"End"};
+item4[] = {"True",8,218,335.044006,-143.203934,425.044006,-93.203934,0.000000,"True"};
+link0[] = {0,1};
+link1[] = {1,2};
+link2[] = {2,4};
+link3[] = {4,3};
+globals[] = {0.000000,0,0,0,0,640,480,1,16,6316128,1,-161.114090,454.048767,192.755524,-306.148834,672,527,1};
+window[] = {0,-1,-1,-32000,-32000,925,195,1155,226,1,690};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "ZoneTriggs";
+        class States
+        {
+                /*%FSM<STATE "Init">*/
+                class Init
+                {
+                        name = "Init";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "true">*/
+                                class true
+                                {
+                                        itemno = 1;
+                                        priority = 0.000000;
+                                        to="hint";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"true"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "hint">*/
+                class hint
+                {
+                        name = "hint";
+                        itemno = 2;
+                        init = /*%FSM<STATEINIT""">*/"_inp = side (param[1] param[0]);" \n
+                         "hint (Format [""Soldier Detected! He is from the %1!"",_inp]);"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "True">*/
+                                class True
+                                {
+                                        itemno = 4;
+                                        priority = 0.000000;
+                                        to="End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"True"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "End">*/
+                class End
+                {
+                        name = "End";
+                        itemno = 3;
+                        init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="Init";
+        finalStates[] =
+        {
+                "End",
+        };
+};
+/*%FSM</COMPILE>*/

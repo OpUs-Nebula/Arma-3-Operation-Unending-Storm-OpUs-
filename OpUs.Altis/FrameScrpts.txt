@@ -1,0 +1,122 @@
+[ 
+    this,                                                                            
+    "Upload Intel",                                                                       
+    "\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",                      
+    "\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",                       
+    "_this distance _target < 3",                                                         
+    "_caller distance _target < 3",                                                      
+    {[_target, 3] call BIS_fnc_DataTerminalAnimate},                                                                                   
+    {},                                                                                   
+    {[_target, 0] call BIS_fnc_DataTerminalAnimate},                                                
+    {[_target, 0] call BIS_fnc_DataTerminalAnimate},                                                                                   
+    [],                                                                                   
+    12,                                                                                   
+    0,                                                                                    
+    true,                                                                                 
+    false                                                                                 
+] call BIS_fnc_holdActionAdd;
+
+[ 
+    this,                                                                            
+    "Cybernetic Repair",                                                                       
+    "\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_reviveMedic_ca.paa",                      
+    "\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_reviveMedic_ca.paa",                       
+    "damage _target > 0",                                                         
+    "damage _target > 0",                                                      
+    {hint "Healing..."},                                                                                   
+    {},                                                                                   
+    {   
+	    hint "You have been Healed!";
+		_target setDamage 0;
+	},                                                
+    {},                                                                                   
+    [],                                                                                   
+    12,                                                                                   
+    0,                                                                                    
+    false,                                                                                 
+    false                                                                                 
+] call BIS_fnc_holdActionAdd;
+
+///MARKERS
+
+//TERRITORY MARKS = 4, Secs = 0
+Create:
+{
+    _xCord = _x param[0];
+    _yCord = _x param[1];
+    
+    
+    _name = format["Location: %1 %2",_xCord,_yCord];
+    
+    _marker = createMarker [_name,[_xCord,_yCord]];
+    _marker setMarkerShape "RECTANGLE";
+    _marker setMarkerSize [200,200];
+    _marker setMarkerColor "ColorBrown";
+} forEach (zones param[0] param[4]);
+
+Delete:
+{
+    _xCord = _x param[0];
+    _yCord = _x param[1];
+    
+    
+    _name = format["Location: %1 %2",_xCord,_yCord];
+	
+	deleteMarker _name
+} forEach (zones param[0] param[4]);
+
+
+//AI loadout origin:
+
+comment "Exported from Arsenal by Nebula";
+
+comment "Remove existing items";
+removeAllWeapons this;
+removeAllItems this;
+removeAllAssignedItems this;
+removeUniform this;
+removeVest this;
+removeBackpack this;
+removeHeadgear this;
+removeGoggles this;
+
+comment "Add containers";
+this forceAddUniform "U_B_CombatUniform_mcam_vest";
+this addItemToUniform "FirstAidKit";
+for "_i" from 1 to 2 do {this addItemToUniform "11Rnd_45ACP_Mag";};
+for "_i" from 1 to 2 do {this addItemToUniform "SmokeShell";};
+for "_i" from 1 to 2 do {this addItemToUniform "Chemlight_yellow";};
+this addVest "V_PlateCarrier2_rgr";
+for "_i" from 1 to 2 do {this addItemToVest "FirstAidKit";};
+for "_i" from 1 to 7 do {this addItemToVest "30Rnd_762x39_Mag_F";};
+for "_i" from 1 to 2 do {this addItemToVest "HandGrenade";};
+for "_i" from 1 to 2 do {this addItemToVest "SmokeShell";};
+this addBackpack "B_Carryall_mcamo";
+for "_i" from 1 to 2 do {this addItemToBackpack "SmokeShellRed";};
+for "_i" from 1 to 4 do {this addItemToBackpack "Chemlight_red";};
+for "_i" from 1 to 2 do {this addItemToBackpack "Titan_AT";};
+this addHeadgear "H_HelmetSpecB_sand";
+this addGoggles "G_Combat";
+
+comment "Add weapons";
+this addWeapon "arifle_AK12_F";
+this addPrimaryWeaponItem "muzzle_snds_B_khk_F";
+this addPrimaryWeaponItem "acc_pointer_IR";
+this addPrimaryWeaponItem "optic_AMS_khk";
+this addPrimaryWeaponItem "bipod_03_F_blk";
+this addWeapon "launch_B_Titan_short_tna_F";
+this addWeapon "hgun_Pistol_heavy_01_F";
+this addWeapon "Rangefinder";
+
+comment "Add items";
+this linkItem "ItemMap";
+this linkItem "ItemCompass";
+this linkItem "ItemWatch";
+this linkItem "ItemRadio";
+this linkItem "B_UavTerminal";
+this linkItem "NVGoggles";
+
+comment "Set identity";
+this setFace "AfricanHead_01";
+this setSpeaker "male05gre";
+[this,"TFAegis"] call bis_fnc_setUnitInsignia;

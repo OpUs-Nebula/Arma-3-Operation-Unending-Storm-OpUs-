@@ -1,0 +1,1 @@
+[getPlayerUID player,"Funds",(player getVariable "Funds"),player] spawn DBC_fnc_SetPlayer;

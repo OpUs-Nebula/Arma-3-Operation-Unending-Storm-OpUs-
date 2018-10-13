@@ -1,0 +1,227 @@
+FBuildings in towns can be converted into various factories\Utilities, such as barracks, ammo depots etc. Can be destroyed by
+players, manual repair except when zone is under threat and\or has just been captured. Possibly HardMode where
+auto-repair is not present, providing incentive for players to think twice about carpet bombing, and keep buildings
+in good condition for objective spawn in favourable locations for added town protection.
+Shop Building: for friendly factions to come along and buy arms, basic supplies etc. Option to setup arms expo
+aswell. Default Nations only hold expos once a week for increased scarcity of NATO\CSAT armaments.
+
+Dedicated Repurpose Vehicle,DRV, checks if nearby building is in friendly territory and if true, then if it is in
+Array of Refurbishable factories. Most likely same system checking if already occupied, and if so, cutting down the cost to 1/4 or maybe even
+just repair costs.
+
+FOB levels:
+1: barrack building
+2: Cargo HQ
+3: Cargo Tower
+
+HQ = Militairy Offices
+
+FOB level 3 can hold 5000 of each resource(5 stacks),
+lvl 2 = 3000, lvl 1 = 1500.
+1 stack per k, different stacks for 10k
+
+(15.927 - 15.427) = Z offseat for seated cargo tower.
+
+//Defence
+Players can setup persistant Patrol Routes for Defending squads. Might add auto-repurchase aswell,
+with timer of 24h until repurchase.
+
+//Texture Editor
+Textures to be edited most likely need to be included in description.ext, in order
+to then be edited ingame. 
+
+Planned resources:
+Steel 5000
+Wood 3000
+Oil(fuel) 1000
+//2 small tanks on 2, 1 small tank on 1.
+
+//OTHER BUILDINGS
+Gold 1000
+Lead 2000
+Uranium(depleted? Maybe i dunno, might be good for tanks)
+
+//GROUP RELATED
+Maximum group count per side: 36
+if 144 players on 3 sides, it means
+minimum of 4 players per group if full side/group count.
+287 is hardcoded limit.
+
+Will probably need a system for city ai joining common super group,
+if group count is approaching hardcoded limit. Requires some sort of array
+stored most likely in namespace, with all groups defending a given city.
+
+//UI
+Can use the same UI but ReWrite titles/Buttons in order to provide different functions and/or
+buying options. Ex. Converting the current Engineering UI into Building purchase(By founder of Base, and/or commander)
+Roads should be OK building sites(Why would you not be able to block roads!?!?!)
+ListBox could be populated with buildings instead. Said buildings using the same ui but for vehicle purchase,
+these purchases build specific vehicles in determined positions, for less issues with players accidentally messing 
+up purchase location and blowing their well earned funds sky high.
+
+Engineering Bars Categories will be populated with Factory Tab, base manegement tab etc,
+Factory Tab puts all factories in ListBox, with distance in paranthesis, and mini-map showing position of factory.
+Desc will show capabilites of Factory, along with Hand Written trivia.
+
+//NOTE TO SELF REGARDING UI/VERTICAL SLICE INCOMPLETNESS//
+Finish systems the way you intend them. Even thouth playable version will take longer, its better
+if the mechanics are implimented the way you want them, instead of in a haphazard way that will only
+be used in dev anyway. Do that in PoC Test Chamber. 
+
+//Resources//
+Mining:
+if terrain object count of rocks is > 0, then mining can occur. Count of rocks , and if possible, size of them
+will determine how effective the mining is. boundingBoxReal and boundingBox can be used for rough volume.
+Frequency of rare metals increases aswell, necssary size of rocks for most rare metals should equate those 
+found in quaries.
+
+Oil:
+
+Wood:
+Pretty obvious, if object is tree, size determines amount of wood.
+
+PlaceHolder resource shop: ION industries. Main Base located off Map on Oil rig, merchants scattered,
+Mercs can be hired at merchants.
+
+//Factories//
+lowered production time for higher level buildings(maybe for amount being produced at once...?)
+Vr holo vehicles showing SpawnPositions of vehicles and types(Would be fine AF) //ADDED BOIII//
+use If in populable buildings, then spawn props script.
+
+use ScreenToWorld for main buildings, modelToWorld to mainbuilding for all props and/or buildings related.
+
+Factory Owner gets 10% of vehicle price(too high leads to exploit)
+
+Dedicated StockPile building, where players can buy inter-nation traded weapons/arms. 
+Commanders might get part of deal when doing arms deals.
+
+UI cats:
+
+Weapons
+Vehicles
+Gear
+
+price then stock nr in box below, followed by description of vehicle.(rip from FANDOM wikia)
+
+
+Categories in Land:
+Un-Armored(Civ)
+
+Light(Hunters, Ifrits, Striders)
+Medium(Marshall, Gorgon, Marid)
+Heavy(Slammer,Kuma,Varsuk)
+
+Air:
+Rotary
+Fixed Wing
+VTOL(Mebe, might just merge it)
+
+Sea:
+Transport
+Combat
+
+//Vehicle Storage//
+Possibly repair included with some, not sure yet. probably not.
+
+Large Dome:
+all land vehicles
+
+Small Dome:
+Medium and smaller
+
+workshop:
+Light and smaller
+
+//Experiance//
+Ranks: 
+Custom experiance, Determines what kind of bases and defences you can build(mebe?)
+
+Perks: 
+InfiniSprint(Infantry perk added after certain miles run)
+GunSlinger(after buying guns for x amount of cash, or sold for x amount)
+SF Operator(After x amount of covert missions and/or time spent as Spec Ops, lowers detectioncoefficient)
+
+//Persistant Timers//
+(Zones, Base Building, Vehicle orders(mebe, max 20 min for spawn though.)
+
+Will most likely have to store in while loops in order to save values, with conditions that can insert
+values for timers to resume mid-count.
+
+//ZONES//
+Commander inputed setVariable controlling the max size AO that can be attacked. Alternativly server set by admins. most likely
+commander, to allow more autonomy to standalone nations.
+
+Nation missionNamespace only contains zone indexes for owned zones, keeps it readable from ingame and no need for such amount of
+data to be transfered for nothing. Removed and added when zone is lost/captured.
+
+QRFs search entire zones, as to ensure no presence of enemy forces.
+
+AAF needs to defend for equally long time before zone is recaptured
+adds an KOTH style element to it, creates an atmosphere of fierce fights over zones, with freeroam for players where character progress made when
+defending/attacking zones is felt when dealing with Patrols, Base invasions, setting up mining posts and other things around the teams territory, as better gear,
+more tiers and therefore gear/vehicles to pick from, larger area to defend, but still with one central gameplay element everyone can focus on, if
+necessary.
+
+
+//WEAPONS AND ITEMS PURCHASE//
+Armory:
+
+Using DropDown menu, allows for infinite amount of Tiers. Will most likely do the same for vehicles.
+//RifleMan is always base, unless configured otherwise in description settings.
+
+
+Tiers:
+RifleMan(1 slots, ARs up to 6.5mm, from 5.56)
+AutoRifleman(1 slots, MX SW, Spar MG)
+Marksman(1 slots, 7.62 up to 9.3 cyrus/.338 Mar-10)
+AT(1 slots, Rocket launchers)
+Heavy Gunner(2 slots, MMGs)
+Sniper(2 slots, Full sniper rifles)
+CrewMan(1 slot, Allows for flight suits, tank crew uniforms)
+UAV operator(1 slot, Can use UAV terminal and control/Hack drones)
+Medic(1 slot, Heals to 100% with MediKit, kan upgrade through leveling to FAKs, but revive with MediKit)
+
+CrewMan benefits:
+Flight Suits And Tank Crew uniforms provide additional funds when doing logistics missions,
+More funds when conducting vehicle kills, More experiance for Ground Support class 
+
+Arsenal functioning:
+Checks currently equipped items and ammo,
+waits until dialog is closed, checks for any changes and withdraws/Deposits cash/items that have changed.
+Old items stored in armory, new items payed for. Impossible to go into debt, removes what ammo cant be payed for.
+
+//INFANTRY CLASSES//
+2 alternatives
+
+1:
+The system restricts what weaposn and gear can be bought/used. Must be AT to use Launchers, Sniper for Sniper rifles etc, with rifleman
+weapons being used by all but the heaviest of specialists. AutoRifleman, Marksman and AT can use rifleman gear, but Heavy Gunner/Sniper can only use
+class specific gear and Weaponry. Might use Right scrollBar of engineering menu to sort between weapons, uniforms etc.
+Price,StockPile and Armory count displayed before description in lower left box.
+Classes also gain benefits, such as increased carry weight(Stamina coefficient change) and decreased recoil(sniper > Marksmen, + added stealth)
+
+Field-Medic(Can heal to 100% with FAKs)
+Field-Surgeon(Can revive with FAKs)
+
+Air Support(Cheaper Air vehicles, can only be used together with CrewMan)
+Ground Support(Cheaper Land vehicles, can only be used together with CrewMan)
+
+
+Fighter Pilot (even cheaper Air-Superiority vehicles, can only be used together with CrewMan)
+CAS Pilot (even cheaper CAS vehicles, can only be used together with CrewMan)
+Tank Commander (even cheaper Heavy Vehicles, can only be used together with CrewMan)
+Logistics Czar (even Logistical vehicles, can only be used together with CrewMan)
+
+and generic bonuses such as added funds/Tier XP for Class-Related Tiers, missions, tasks etc. 
+
+
+
+ 
+
+//DONT UsE, MIGHT PROVIDE OPTION//2. Everyone can buy and use any weapon. But designated classes only gain buffers, such as decreased recoil or larger carry weight.
+
+//Side Missions//
+Go on Foot/Vehicle/Air Patrols in territory or around Bases for money, Random chance of AI spawned attack,
+shows up on enemy sides as Ambush mission.
+
+Random chance that patrol leads to Mining outpost, base or other enemy constructions/facilities/activity in territory, friendly or enemy.
